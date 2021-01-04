@@ -72,7 +72,9 @@ RestaurantCuisine.create(restaurant_id: 3, cuisine_id: 2)
 RestaurantCuisine.create(restaurant_id: 4, cuisine_id: 2)
 RestaurantCuisine.create(restaurant_id: 5, cuisine_id: 1)
 RestaurantCuisine.create(restaurant_id: 6, cuisine_id: 1)
-RestaurantCuisine.create(restaurant_id: 7, cuisine_id: 4)
+RestaurantCuisine.create(restaurant_id: 7, cuisine_id: 4) 
+
+
 
 
 # Plant.create([
