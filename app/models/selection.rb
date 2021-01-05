@@ -1,4 +1,4 @@
-class Selections < ActiveRecord::Base
+class Selection < ActiveRecord::Base
   belongs_to :user
   belongs_to :restaurant
 end

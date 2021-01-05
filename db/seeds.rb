@@ -52,11 +52,11 @@ Cuisine.create([
 
 Restaurant.create([
     {name: "The Rex Burger & Lobster", street_address: "524 Jericho Turnpike", phone_number: 5167392747, hours: "12pm-8pm", url: "therexburgerandlobster.com", neighborhood_id: 1},
-    {name: "Petey's Burger", street_address: "3017 30th Ave", phone_number: 7182676300, hours "11am-11pm", url: "peteysburgers.com", neighborhood_id: 1},
-    {name: "Astoria Dragon & Phoenix", street_address: "2921 Astoria Blvd", phone_number: 7188657656, hours: "11am-11pm", url: "dragon.com", neighborhood_id: 1}
-    {name: "Ma Lala", street_address: "4202 30th Ave", phone_number: 7186061898, hours: "12:15pm-10:15pm", url: "ma-lala-chinese.business.site", neighborhood_id: 1}
-    {name: "Namaste", street_address: "3115 30th Ave", phone_number: 7186262783, hours: "11am-11pm", url: "namaste-astoria.com", neighborhood_id: 1}
-    {name: "Tikka Indian Grill", street_address: "3414 30th Ave", phone_number: 7182551085, hours: "12pm-11pm", url: "tikkaindiangrill.com", neighborhood_id: 1} 
+    {name: "Petey's Burger", street_address: "3017 30th Ave", phone_number: 7182676300, hours: "11am-11pm", url: "peteysburgers.com", neighborhood_id: 1},
+    {name: "Astoria Dragon & Phoenix", street_address: "2921 Astoria Blvd", phone_number: 7188657656, hours: "11am-11pm", url: "dragon.com", neighborhood_id: 1},
+    {name: "Ma Lala", street_address: "4202 30th Ave", phone_number: 7186061898, hours: "12:15pm-10:15pm", url: "ma-lala-chinese.business.site", neighborhood_id: 1},
+    {name: "Namaste", street_address: "3115 30th Ave", phone_number: 7186262783, hours: "11am-11pm", url: "namaste-astoria.com", neighborhood_id: 1},
+    {name: "Tikka Indian Grill", street_address: "3414 30th Ave", phone_number: 7182551085, hours: "12pm-11pm", url: "tikkaindiangrill.com", neighborhood_id: 1}, 
     {name: "Abuqir Seafood", street_address: "2419 Steinway St", phone_number: 7182743474, hours: "12pm-11pm", url: "asg.com", neighborhood_id: 1}
 ])  
 
