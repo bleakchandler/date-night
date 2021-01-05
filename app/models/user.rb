@@ -26,8 +26,18 @@ has_many :restaurants, through: :selections
     end 
 
     def name_of_last_selection 
-        user.selections.last.restaurant.name
+        self.selections.last.restaurant.name
     end 
 
-    
+    def favorite_last_selection
+        self.selections.last.update(favorite: true)
+    end 
+
+    # def non_favorite_last_selection
+    #     self.selections.last.favorite = false
+    # end 
+
+    def favorite_restaurants
+        self.selections.select{|selection|selection.favorite==true}
+    end 
 end
