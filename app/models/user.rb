@@ -24,4 +24,10 @@ has_many :restaurants, through: :selections
         restaurant_id_inst = Restaurant.all.sample.id
         Selection.create(restaurant_id: restaurant_id_inst, user_id: self.id)
     end 
+
+    def name_of_last_selection 
+        user.selections.last.restaurant.name
+    end 
+
+    
 end
