@@ -42,7 +42,7 @@ class DateNight
           end
           self.user = User.create(name: name)
           puts "Hello #{user.name}!"
-          main_screen
+          main_menu
   end 
 
   def exit_helper 
@@ -51,9 +51,33 @@ class DateNight
 
   private
 
-  def last_restaurant 
-    prompt.yes?("Did you enjoy your experience at #{user.name_of_last_selection}?")
+  def last_restaurant
+    last_dinning = prompt.yes?("Did you enjoy your experience at #{user.name_of_last_selection}?")
+    # update resturant fav.
+    if last_dinning == true
+    user.favorite_last_selection
+    end
+    main_menu
   end 
+
+  def main_menu
+    prompt.select("Choose your Adventure!") do |menu|
+      menu.choice "See you Favorites", -> { favorites_helper }
+      menu.choice "Choose a Restaurant by cuisine", -> { restaurant_by_cuisine_helper}
+      menu.choice "Surprise me!", -> { random_resturant_helper}
+      menu.choice "Exit", -> { exit_helper}
+    end
+  end 
+  
+  def favorites_helper
+  end  
+
+  def random_resturant_helper
+  end
+  
+  def restaurant_by_cuisine_helper
+  end
+
   
 end
 
