@@ -38,6 +38,7 @@ has_many :restaurants, through: :selections
     # end 
 
     def favorite_restaurants
-        self.selections.select{|selection|selection.favorite==true}
+        fav_selection = self.selections.where(favorite: true)
+        fav_selection.map{|select|select.restaurant}
     end 
 end

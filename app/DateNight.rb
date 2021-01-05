@@ -53,7 +53,6 @@ class DateNight
 
   def last_restaurant
     last_dinning = prompt.yes?("Did you enjoy your experience at #{user.name_of_last_selection}?")
-    # update resturant fav.
     if last_dinning == true
     user.favorite_last_selection
     end
@@ -62,7 +61,7 @@ class DateNight
 
   def main_menu
     prompt.select("Choose your Adventure!") do |menu|
-      menu.choice "See you Favorites", -> { favorites_helper }
+      menu.choice "See your Favorites", -> { favorites_helper }
       menu.choice "Choose a Restaurant by cuisine", -> { restaurant_by_cuisine_helper}
       menu.choice "Surprise me!", -> { random_resturant_helper}
       menu.choice "Exit", -> { exit_helper}
@@ -70,6 +69,13 @@ class DateNight
   end 
   
   def favorites_helper
+    puts "#{user.favorite_restaurants}"
+    prompt.select(" ") do |menu|
+      menu.choice "Update you Favorites", -> { update_favs_helper}
+      menu.choice "Main Menu", -> { main_menu}
+      menu.choice "Exit", -> { exit_helper}
+    end
+
   end  
 
   def random_resturant_helper
@@ -78,6 +84,9 @@ class DateNight
   def restaurant_by_cuisine_helper
   end
 
+  def update_favs_helper
+  end
+  
   
 end
 
