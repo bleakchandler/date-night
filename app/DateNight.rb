@@ -26,16 +26,25 @@ class DateNight
 
   def sign_in_helper 
     name = prompt.ask("What is your username?")
-    self.user = User.find_by(name: name) 
+    if self.user = User.find_by(name: name) 
       puts "Welcome back #{user.name}!"
-    # else sign_up_helper 
+      did_you_like
+    else
+      puts "username not found"
+      sign_up_helper
+    end  
+  end
+  
+  def did_you_like
     sleep(1.5)
-    last_restaurant
-    
+    while user.selections.length >= 1 
+      last_restaurant
+    end   
+    main_menu
   end  
 
   def sign_up_helper 
-    name = prompt.ask("What is your username?")
+    name = prompt.ask("Create username?")
           while User.find_by(name: name)
               puts "This username is already taken"
               name = prompt.ask("What is your username?")
@@ -45,11 +54,10 @@ class DateNight
           main_menu
   end 
 
-  def exit_helper 
-      puts "Enjoy your Meal!"
-  end 
+  
+  
 
-  private
+  # private
 
   def last_restaurant
     last_dinning = prompt.yes?("Did you enjoy your experience at #{user.name_of_last_selection}?")
@@ -79,14 +87,37 @@ class DateNight
   end  
 
   def random_resturant_helper
+    puts "#{user.random_restaurant}"
+    prompt.select(" ") do |menu|
+      menu.choice "Give it a Try", -> { exit_helper}
+      menu.choice "Select again", -> { main_menu}
+    end
   end
   
   def restaurant_by_cuisine_helper
+    cuisine = Cuisine.all_names
+      cuisine_id = prompt.select("Which Cuisine would you like?", cuisine)
+    puts "#{user.create_selection_by_cuisine(cuisine_id)}"
+    prompt.select(" ") do |menu|
+      menu.choice "Give it a Try", -> { exit_helper}
+      menu.choice "Select again", -> { main_menu}
+    end
   end
 
   def update_favs_helper
+    favs = user.favorite_restaurants.map{|fav|fav.name}
+
+      restaurant_name = prompt.select("Which Restaurant would you like to Delete?", favs)
+      restaurant_inst = Restaurant.where(name: restaurant_name)
+      restaurant_id_inst = restaurant_inst[0].id
+      user.delete_a_fav(restaurant_id_inst)
+      puts "#{restaurant_name} has been removed from your Favorites!"
+      main_menu
   end
   
+  def exit_helper 
+      puts "Enjoy your Meal!"
+  end 
   
 end
 

@@ -9,6 +9,8 @@ class Cuisine < ActiveRecord::Base
     #     random_by_cuisine.id
     # end  
 
-      
+    def self.all_names
+        self.all.map{|cuisine| {cuisine.name => cuisine.id}}
+    end
 
 end    
