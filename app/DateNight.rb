@@ -77,7 +77,18 @@ class DateNight
   end 
   
   def favorites_helper
-    puts "#{user.favorite_restaurants}"
+    binding.pry
+    favs = user.favorite_restaurants
+
+    # i= 0  
+    # user.favorite_restaurants[i] < user.favorite_restaurants.length, i++ 
+    # user.favorite_restaurants[i].name
+
+    # user.favorite_restaurants.map{|restaurant| restaurant.name}
+
+
+
+
     prompt.select(" ") do |menu|
       menu.choice "Update you Favorites", -> { update_favs_helper}
       menu.choice "Main Menu", -> { main_menu}

@@ -12,3 +12,5 @@ gem 'activerecord-reset-pk-sequence'
 gem "tty-prompt"
 
 gem "colorize"
+
+gem "tty-table"
