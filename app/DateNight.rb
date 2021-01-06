@@ -77,14 +77,36 @@ class DateNight
   end 
   
   def favorites_helper
-    binding.pry
     favs = user.favorite_restaurants
+    favs.each{|fav| puts " ", fav.name, fav.street_address,fav.phone_number, fav.hours, fav.url, " " }
 
+    # favs.each do |fav|
+    # table = TTY::Table.new([{puts " fav.name" => ["a1", "a2"], "h2" => ["b1", "b2"]}])
+    # end
+    # puts table.render(:ascii)
+   
+    # table(border: true) do
+    #   row header: true do
+    #     column('NAME', width: 17)
+    #     column('ADDRESS', width: 21)
+    #     column('PHONE #', width: 14, align: 'center')
+    #     column('YELP  RATING', width: 6, align: 'center')
+    #   end
+    #   favs.each do |fav|
+    #     row do
+    #       column(puts fav.name)
+    #       column(puts fav.street_addess)
+    #       column(puts fav.hours)
+    #       column(puts fav.url)
+    #     end
+    #   end
+    # end
+          
     # i= 0  
     # user.favorite_restaurants[i] < user.favorite_restaurants.length, i++ 
     # user.favorite_restaurants[i].name
 
-    # user.favorite_restaurants.map{|restaurant| restaurant.name}
+    # table << user.favorite_restaurants.each{|restaurant|puts restaurant.name}
 
 
 
