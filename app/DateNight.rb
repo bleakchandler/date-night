@@ -117,6 +117,7 @@ class DateNight
   
   def exit_helper 
       puts "Enjoy your Meal!"
+      exit
   end 
   
 end

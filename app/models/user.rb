@@ -41,7 +41,7 @@ has_many :restaurants, through: :selections
 
     def favorite_restaurants
         fav_selection = self.selections.where(favorite: true)
-        fav_selection.map{|select|select.restaurant}
+        fav_selection.map{|select|select.restaurant}.uniq
     end 
 
     def delete_a_fav(restaurant_id_inst)
