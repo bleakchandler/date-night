@@ -12,7 +12,21 @@ class DateNight
     # login_or_signup
     # wanna_see_favs?
     # get_joke(what_subject)
+    
   end
+
+  def romantic_music 
+    pid = fork{exec 'afplay', "10sec DateNight.mp3"}
+  end
+
+  def dinner_audio 
+    pid = fork{exec 'afplay', "dinner audio.mp3"}
+  end
+
+  def wine_cheers 
+    pid = fork{exec 'afplay', "wineeeee.mp3"}
+  end
+
   def banner
     puts"
     $$$$$$$l             $$l                     $$l   $$l $$l           $$l        $$l     
@@ -30,11 +44,14 @@ class DateNight
   end  
 
   def welcome
-    
+    romantic_music
+    sleep(2)
     puts "Welcome to...".colorize(:magenta)
-    sleep(1)
+    sleep(2)
     banner
-    sleep(1)
+    sleep(2)
+    dinner_audio
+    sleep(4)
     prompt.select("Sign in or Sign up") do |menu|
       menu.choice "Sign in", -> { sign_in_helper }
       menu.choice "Sign up", -> { sign_up_helper}
@@ -157,7 +174,22 @@ class DateNight
   end
   
   def exit_helper 
-      puts "Enjoy your Meal!"
+      system 'clear'
+      wine_cheers
+      puts "
+      /$$$$$$$$                                                                                       /$$      /$$                     /$$ /$$
+     | $$_____/                                                                                      | $$$    /$$$                    | $$| $$
+     | $$       /$$$$$$$  /$$  /$$$$$$  /$$   /$$       /$$   /$$  /$$$$$$  /$$   /$$  /$$$$$$       | $$$$  /$$$$  /$$$$$$   /$$$$$$ | $$| $$
+     | $$$$$   | $$__  $$|__/ /$$__  $$| $$  | $$      | $$  | $$ /$$__  $$| $$  | $$ /$$__  $$      | $$ $$/$$ $$ /$$__  $$ |____  $$| $$| $$
+     | $$__/   | $$  l $$ /$$| $$  l $$| $$  | $$      | $$  | $$| $$  l $$| $$  | $$| $$  l__/      | $$  $$$| $$| $$$$$$$$  /$$$$$$$| $$|__/
+     | $$      | $$  | $$| $$| $$  | $$| $$  | $$      | $$  | $$| $$  | $$| $$  | $$| $$            | $$  $  | $$| $$_____/ /$$__  $$| $$
+     | $$$$$$$$| $$  | $$| $$|  $$$$$$/|  $$$$$$$      |  $$$$$$$|  $$$$$$/|  $$$$$$/| $$            | $$ l/  | $$|  $$$$$$$|  $$$$$$$| $$/$$
+     |________/|__/  |__/| $$ l______/  l____  $$       l____  $$ l______/  l______/ |__/            |__/     |__/ l_______/ l_______/|__/|__/
+                    /$$  | $$           /$$  | $$       /$$  | $$                                                                         
+                   |  $$$$$$/          |  $$$$$$/      |  $$$$$$/                                                                         
+                    l______/            l______/        l______/                                                                          ".colorize(:light_magenta)
+     
+      sleep(2)
       exit
   end 
   
