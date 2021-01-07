@@ -13,9 +13,27 @@ class DateNight
     # wanna_see_favs?
     # get_joke(what_subject)
   end
+  def banner
+    puts"
+    $$$$$$$l             $$l                     $$l   $$l $$l           $$l        $$l     
+    $$  __$$l            $$ |                    $$$l  $$ |l__|          $$ |       $$ |    
+    $$ |  $$ | $$$$$$l $$$$$$l    $$$$$$l        $$$$l $$ |$$l  $$$$$$l  $$$$$$$l $$$$$$l   
+    $$ |  $$ | l____$$ll_$$  _|  $$  __$$l       $$ $$l$$ |$$ |$$  __$$l $$  __$$ll_$$  _|  
+    $$ |  $$ | $$$$$$$ | $$ |    $$$$$$$$ |      $$ l$$$$ |$$ |$$ /  $$ |$$ |  $$ | $$ |    
+    $$ |  $$ |$$  __$$ | $$ |$$l $$   ____|      $$ |l$$$ |$$ |$$ |  $$ |$$ |  $$ | $$ |$$l 
+    $$$$$$$  |l$$$$$$$ | l$$$$  |l $$$$$$$l      $$ | l$$ |$$ |l$$$$$$$ |$$ |  $$ | l$$$$  |
+    l_______/  l_______|  l____/  l_______|      l__|  l__|l__| l____$$ |l__|  l__|  l____/ 
+                                                               $$l   $$ |                   
+                                                               l$$$$$$  |                   
+                                                                l______/                    
+    ".colorize(:light_magenta)
+  end  
 
   def welcome
-    puts "Welcome to Date Night!"
+    
+    puts "Welcome to...".colorize(:magenta)
+    sleep(1)
+    banner
     sleep(1)
     prompt.select("Sign in or Sign up") do |menu|
       menu.choice "Sign in", -> { sign_in_helper }
@@ -68,6 +86,8 @@ class DateNight
   end 
 
   def main_menu
+    system 'clear'
+    banner
     prompt.select("Choose your Adventure!") do |menu|
       menu.choice "See your Favorites", -> { favorites_helper }
       menu.choice "Choose a Restaurant by cuisine", -> { restaurant_by_cuisine_helper}
@@ -78,7 +98,7 @@ class DateNight
   
   def favorites_helper
     favs = user.favorite_restaurants
-    favs.each{|fav| puts " ", fav.name, fav.street_address,fav.phone_number, fav.hours, fav.url, " " }
+    favs.each{|fav| puts "\n", fav.name, fav.street_address,fav.phone_number, fav.hours, fav.url, "\n "}
 
     # favs.each do |fav|
     # table = TTY::Table.new([{puts " fav.name" => ["a1", "a2"], "h2" => ["b1", "b2"]}])
