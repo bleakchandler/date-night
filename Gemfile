@@ -14,3 +14,5 @@ gem "tty-prompt"
 gem "colorize"
 
 gem "tty-table"
+
+gem 'yelp', require: 'yelp'

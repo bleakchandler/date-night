@@ -13,7 +13,7 @@ has_many :restaurants, through: :selections
     def create_selection_by_cuisine(cuisine_id)
         restaurant_id_inst = random_by_cuisine(cuisine_id).id
         Selection.create(restaurant_id: restaurant_id_inst, user_id: self.id)
-        Restaurant.find(restaurant_id_inst).name
+        Restaurant.find(restaurant_id_inst)
     end  
  
 
@@ -24,7 +24,7 @@ has_many :restaurants, through: :selections
     def random_restaurant
         restaurant_id_inst = Restaurant.all.sample.id
         Selection.create(restaurant_id: restaurant_id_inst, user_id: self.id)
-        Restaurant.find(restaurant_id_inst).name
+        Restaurant.find(restaurant_id_inst)
     end 
 
     def name_of_last_selection 
