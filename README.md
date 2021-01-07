@@ -1,30 +1,31 @@
-## Ruby CLI stub repo
+## DATE NIGHT
 
-### NOTE
-- this setup contains a rakefile with helpful process reminders
+### Install application
+- Clone repo from https://github.com/jtray86/date-night.git
 
-### Setup
-0. Clone the repo (do not fork), `cd` to the folder and then run `rm -rf .git` to remove git tracking. This will allow you to use this repo as your own repository, unconnected to mine. Go to github, create a new repository and upload the starter there. 
-1. Create Gemfile + run `bundle`
-2. Create migrations: run `rake db:create_migration` and add the syntax you need (e.g. `NAME=create_users`)
-3. Migrate: run `rake db:migrate`
-* **REMEMBER** never ever ever change anything in schema.
-4. Go to `.bin/run.rb` and change the name of the app on line 3 AND/OR go to `Rakefile` and change the name of the app on line 15
-5. Go to `./app/models` and change the names of the files (e.g. `User.rb` <- singular) and the class names inside
-6. Set up association macros in classes (`belongs_to` / `has_many` / `has_many, through:`)
-7. Create seed file in `db/seed.rb` + then run `rake db:seed`
-* remember: seeding does not give you any output so no news on your console == good news
-8. Check if you've seeded correctly: run `rake c` and check what's the last instance of any of your class 
-9. Go to `./app/yourAppName.rb` and change that file's name and whatever is inside (the class name should correspond to what you wrote in `.bin/run.rb` on line 3)
-10. Remember to change the readme. If you need an inspiration on how to write a good readme, check [this blog post](https://dev.to/sylwiavargas/recipe-for-a-good-readme-3m6j).
+### Run application
+- Navigate to the Date-night file in your tearminal
+- run  `rake start` 
 
-### Coding
-1. Create a dummy version of your logic -> hardcode it and don't yet make your code save anything to the database, just make sure that the logic works
-2. Test often by running the file, by running `rake console` or by `binding.pry`
-3. What I fould useful is drowing out every step I want to guide users through before coding - my whiteboard looked like this:
-![](Sunday.jpg)
-4. Then I coded the dummy version (without saving to the database, just to see if all "if"s are working and all that jazz)
-5. Then I added the database manipulations.
+### Using the application
+1. choose from welecome menu
+    - sing in if you have a username 
+    - sign up if you are a new user
+    - exit if you have changed your mind
+2. when you sign in you will be asked about your last dinning experience.
+    - say yes or y if you enjoyed it and would like to add it to your favorates.
+    - and no of it wasn't the best
+    - once you have answer you will be brought to the main manu.
+3. When you sign up you will be prompted to enter a new username.
+    - enter a name 
+        - if it has already been taken you will be prompted to try again.
+    - When you have a new username you will be brought to a new user menu 
+4. From the main menu you can choose to 
+    - see your favorates
+    - get a restaurant by cuisine 
+    - get a "suprise" restaurant 
+    - exit 
+5. The new user menu 
 6. Then I beautified the code and the app to make it visually pleasing
 
 ## APIs
