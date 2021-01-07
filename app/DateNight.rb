@@ -1,3 +1,5 @@
+
+
 class DateNight
   attr_reader :prompt
   attr_accessor :user 
@@ -12,6 +14,21 @@ class DateNight
     # login_or_signup
     # wanna_see_favs?
     # get_joke(what_subject)
+  end
+
+  def api_restaurants
+    response =  RestClient.get "https://developers.zomato.com/api/v2.1/search?count=200&lat=40.7128&lon=74.0060&radius=40233.6&sort=real_distance", {content_type: :json, accept: :json, "user-key": "b15c0449cabc39ad8fcc569d26d3c0a0"}
+
+    body = response.body
+    parsed = JSON.parse(body)
+    name = parsed["restaurants"].map{|restaurant| restaurant["restaurant"]["name"]}
+    url = parsed["restaurants"].map{|restaurant| restaurant["restaurant"]["url"]}
+    street_address = parsed["restaurants"].map{|restaurant| restaurant["restaurant"]["location"]["address"]}
+    cuisine = parsed["restaurants"].map{|restaurant| restaurant["restaurant"]["cuisines"]}
+    hours = parsed["restaurants"].map{|restaurant| restaurant["restaurant"]["timimgs"]}
+    phone_number = parsed["restaurants"].map{|restaurant| restaurant["restaurant"]["phone_numbers"]}
+
+
   end
 
   def welcome
@@ -44,7 +61,7 @@ class DateNight
   end  
 
   def sign_up_helper 
-    name = prompt.ask("Create username?")
+    name = prompt.ask("Create a username?")
           while User.find_by(name: name)
               puts "This username is already taken"
               name = prompt.ask("What is your username?")
@@ -61,7 +78,7 @@ class DateNight
 
   def last_restaurant
     last_dinning = prompt.yes?("Did you enjoy your experience at #{user.name_of_last_selection}?")
-    if last_dinning == true
+    if last_dinning 
     user.favorite_last_selection
     end
     main_menu
@@ -130,7 +147,7 @@ class DateNight
   def restaurant_by_cuisine_helper
     cuisine = Cuisine.all_names
       cuisine_id = prompt.select("Which Cuisine would you like?", cuisine)
-    puts "#{user.create_selection_by_cuisine(cuisine_id)}"
+     puts "#{user.create_selection_by_cuisine(cuisine_id)}"
     prompt.select(" ") do |menu|
       menu.choice "Give it a Try", -> { exit_helper}
       menu.choice "Select again", -> { main_menu}
