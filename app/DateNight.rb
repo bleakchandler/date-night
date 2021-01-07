@@ -140,6 +140,7 @@ class DateNight
     prompt.select("\n#{restaurant_selection.name} \n#{restaurant_selection.street_address} \n#{restaurant_selection.phone_number} \n#{restaurant_selection.url}\n\n") do |menu|
       menu.choice "Give it a Try", -> { exit_helper}
       menu.choice "Select again", -> { restaurant_by_cuisine_helper }
+      menu.choice "Main Menu", -> { main_menu}
       menu.choice "Exit", -> { exit_helper}
     end
   end
