@@ -1,8 +1,9 @@
 
-
 class DateNight
   attr_reader :prompt
-  attr_accessor :user 
+  attr_accessor :user
+ 
+
   # here will be your CLI!
   # it is not an AR class so you need to add attr
   def initialize
@@ -18,6 +19,7 @@ class DateNight
 
 
   def welcome
+    variable_method
     puts "Welcome to Date Night!"
     sleep(1)
     prompt.select("Sign in or Sign up") do |menu|
@@ -61,6 +63,18 @@ class DateNight
   
 
   # private
+  def variable_method
+    binding.pry
+    restaurant_all = american_restaurants.concat(chinese_restaurants, bbq_restaurants, burger_restaurants, greek_restaurants, healthy_restaurants, italian_restaurants, jepanese_restaurants, mexican_restaurants, seafood_restaurants, thai_restaurants)
+
+    name = restaurant_all["restaurants"].map{|restaurant| restaurant["restaurant"]["name"]}
+    url = parsed["restaurants"].map{|restaurant| restaurant["restaurant"]["url"]}
+    street_address = parsed["restaurants"].map{|restaurant| restaurant["restaurant"]["location"]["address"]}
+    cuisine = parsed["restaurants"].map{|restaurant| restaurant["restaurant"]["cuisines"]}
+    hours = parsed["restaurants"].map{|restaurant| restaurant["restaurant"]["timimgs"]}
+    phone_number = parsed["restaurants"].map{|restaurant| restaurant["restaurant"]["phone_numbers"]}
+
+  end  
 
   def last_restaurant
     last_dinning = prompt.yes?("Did you enjoy your experience at #{user.name_of_last_selection}?")
@@ -151,6 +165,85 @@ class DateNight
       main_menu
   end
   
+  def american_restaurants
+    response =  RestClient.get "https://developers.zomato.com/api/v2.1/search?lat=40.7128&lon=74.0060&radius=40233.6&cuisines=1&sort=real_distance", {content_type: :json, accept: :json, "user-key": "b15c0449cabc39ad8fcc569d26d3c0a0"}
+    body = response.body
+    parsed = JSON.parse(body)
+    parsed
+    
+  end
+
+  def chinese_restaurants
+    response =  RestClient.get "https://developers.zomato.com/api/v2.1/search?lat=40.7128&lon=74.0060&radius=40233.6&cuisines=25&sort=real_distance", {content_type: :json, accept: :json, "user-key": "b15c0449cabc39ad8fcc569d26d3c0a0"}
+    body = response.body
+    parsed = JSON.parse(body)
+    parsed
+    
+  end
+
+  def bbq_restaurants
+    response =  RestClient.get "https://developers.zomato.com/api/v2.1/search?lat=40.7128&lon=74.0060&radius=40233.6&cuisines=193&sort=real_distance", {content_type: :json, accept: :json, "user-key": "b15c0449cabc39ad8fcc569d26d3c0a0"}
+    body = response.body
+    parsed = JSON.parse(body)
+    parsed
+  end
+
+  def burger_restaurants
+    response =  RestClient.get "https://developers.zomato.com/api/v2.1/search?lat=40.7128&lon=74.0060&radius=40233.6&cuisines=168&sort=real_distance", {content_type: :json, accept: :json, "user-key": "b15c0449cabc39ad8fcc569d26d3c0a0"}
+    body = response.body
+    parsed = JSON.parse(body)
+    parsed
+  end
+
+  def greek_restaurants
+    response =  RestClient.get "https://developers.zomato.com/api/v2.1/search?lat=40.7128&lon=74.0060&radius=40233.6&cuisines=156&sort=real_distance", {content_type: :json, accept: :json, "user-key": "b15c0449cabc39ad8fcc569d26d3c0a0"}
+    body = response.body
+    parsed = JSON.parse(body)
+    parsed
+  end
+
+  def healthy_restaurants
+    response =  RestClient.get "https://developers.zomato.com/api/v2.1/search?lat=40.7128&lon=74.0060&radius=40233.6&cuisines=143&sort=real_distance", {content_type: :json, accept: :json, "user-key": "b15c0449cabc39ad8fcc569d26d3c0a0"}
+    body = response.body
+    parsed = JSON.parse(body)
+    parsed
+  end
+
+  def italian_restaurants
+    response =  RestClient.get "https://developers.zomato.com/api/v2.1/search?lat=40.7128&lon=74.0060&radius=40233.6&cuisines=55&sort=real_distance", {content_type: :json, accept: :json, "user-key": "b15c0449cabc39ad8fcc569d26d3c0a0"}
+    body = response.body
+    parsed = JSON.parse(body)
+    parsed
+  end
+
+  def jepanese_restaurants
+    response =  RestClient.get "https://developers.zomato.com/api/v2.1/search?lat=40.7128&lon=74.0060&radius=40233.6&cuisines=60&sort=real_distance", {content_type: :json, accept: :json, "user-key": "b15c0449cabc39ad8fcc569d26d3c0a0"}
+    body = response.body
+    parsed = JSON.parse(body)
+    parsed
+  end
+
+  def mexican_restaurants
+    response =  RestClient.get "https://developers.zomato.com/api/v2.1/search?lat=40.7128&lon=74.0060&radius=40233.6&cuisines=73&sort=real_distance", {content_type: :json, accept: :json, "user-key": "b15c0449cabc39ad8fcc569d26d3c0a0"}
+    body = response.body
+    parsed = JSON.parse(body)
+    parsed
+  end
+
+  def seafood_restaurants
+    response =  RestClient.get "https://developers.zomato.com/api/v2.1/search?lat=40.7128&lon=74.0060&radius=40233.6&cuisines=83&sort=real_distance", {content_type: :json, accept: :json, "user-key": "b15c0449cabc39ad8fcc569d26d3c0a0"}
+    body = response.body
+    parsed = JSON.parse(body)
+    parsed
+  end
+
+  def thai_restaurants
+    response =  RestClient.get "https://developers.zomato.com/api/v2.1/search?lat=40.7128&lon=74.0060&radius=40233.6&cuisines=93&sort=real_distance", {content_type: :json, accept: :json, "user-key": "b15c0449cabc39ad8fcc569d26d3c0a0"}
+    body = response.body
+    parsed = JSON.parse(body)
+    parsed
+  end
+
   def exit_helper 
       puts "Enjoy your Meal!"
       exit
